@@ -46,3 +46,18 @@ El formulario html para este endpoint:
     <button type="submit">Enviar</button>
 </form>
 ```
+
+##Fetch api
+
+Cuando queremos hacer algo con la respuesta del backend, necesitamos usar 'fetch' y 
+
+en el front
+
+```js
+```
+
+En El backend:
+```js
+```
+
+Es importante añadir `app.use(express.json());` o no poderomos
