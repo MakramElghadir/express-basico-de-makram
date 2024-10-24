@@ -47,17 +47,38 @@ El formulario html para este endpoint:
 </form>
 ```
 
-##Fetch api
+## fetch api
 
-Cuando queremos hacer algo con la respuesta del backend, necesitamos usar 'fetch' y 
+Cuando queremos hacer algo con la respuesta del backend, necesitamos usar `fetch` y `then`.
 
-en el front
+En el front:
 
-```js
+```html
+<h1>hola mundo</h1>
+<p id="respuesta"></p>
+<script>
+const parrafo = document.getElementById("respuesta")
+    fetch('/json', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ nombre: 'Diego' })
+})
+.then(response => response.text())
+.then(data => parrafo.textContent = data);
+</script>
 ```
 
-En El backend:
+En el backend:
+
 ```js
+app.use(express.json());
+
+app.post('/json', (req, res) => {
+    const nombre = req.body.nombre
+    res.send(`Hola, ${nombre}!`);
+});
 ```
 
-Es importante añadir `app.use(express.json());` o no poderomos
+Es importante añadir `app.use(express.json());` o no podremos recibir el dato en `req.body.nombre`.
